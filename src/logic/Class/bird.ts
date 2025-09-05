@@ -4,24 +4,32 @@ export default class Bird {
     public top: number
     public control: Jump
 
-    constructor( top: number ) {
+    private birb: HTMLDivElement;
+    private readonly height: number;
+    private readonly half: number;
+
+    constructor( top: number, id: string ) {
         this.top = top;
+        this.birb = document.getElementById( id ) as HTMLDivElement;
+        this.height = this.birb.offsetHeight;
+        this.half = this.height / 2;
 
         this.control = new Jump();
     }
 
     private topCollision(): boolean {
-        const birb = document.getElementById( 'bird' ) as HTMLDivElement;
-        const height: number = Number( birb.offsetHeight ) / 2;
-        return this.top <= height;
+        return this.top <= this.half;
+    }
+
+    private bottomCollision(): boolean {
+        return this.top >= ( screen.availHeight - this.height );
     }
 
     public update(): void {
-        console.log(this.top)
         if ( this.control.isJumping ) {
             this.top -= !this.topCollision()? 14 : 0;
         } else {
-            this.top += 6;
+            this.top += !this.bottomCollision()? 7 : 0;
         }
     }
 }

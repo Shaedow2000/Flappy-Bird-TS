@@ -1,6 +1,9 @@
 import Bird from "../Class/bird.ts";
 
-const bird: Bird = new Bird( screen.availHeight / 2 );
+const top: number = screen.availHeight / 2;
+const bottom: number = top * 2;
+
+const bird: Bird = new Bird( top, 'bird' );
 const birdDiv = document.getElementById( 'bird' ) as HTMLDivElement;
 
 export default function animate(): void {
