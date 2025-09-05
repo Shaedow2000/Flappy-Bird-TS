@@ -10,9 +10,16 @@ export default class Bird {
         this.control = new Jump();
     }
 
+    private topCollision(): boolean {
+        const birb = document.getElementById( 'bird' ) as HTMLDivElement;
+        const height: number = Number( birb.offsetHeight ) / 2;
+        return this.top <= height;
+    }
+
     public update(): void {
+        console.log(this.top)
         if ( this.control.isJumping ) {
-            this.top -= 14;
+            this.top -= !this.topCollision()? 14 : 0;
         } else {
             this.top += 6;
         }
