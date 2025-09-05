@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@layer base {
+    #shadow,
+    #game-over {
+        display: none;
+        visibility: hidden;
+    }
+}

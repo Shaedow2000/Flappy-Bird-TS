@@ -1,5 +1,8 @@
 import Jump from "../events/jump.ev.ts";
 
+const shadow = document.getElementById( 'shadow' ) as HTMLDivElement;
+const gameOVer = document.getElementById( 'game-over' ) as HTMLHeadingElement;
+
 export default class Bird {
     public top: number
     public control: Jump
@@ -22,7 +25,20 @@ export default class Bird {
     }
 
     private bottomCollision(): boolean {
-        return this.top >= ( screen.availHeight - this.height );
+        if ( this.top >= ( screen.availHeight - this.height ) ) {
+            this.gameOver();
+            return true;
+        } else {
+            return false
+        }
+    }
+
+    private gameOver(): void {
+        shadow.style.display = 'block';
+        shadow.style.visibility = 'visible';
+
+        gameOVer.style.display = 'block';
+        gameOVer.style.visibility = 'visible';
     }
 
     public update(): void {

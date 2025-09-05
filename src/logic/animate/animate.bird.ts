@@ -1,7 +1,6 @@
 import Bird from "../Class/bird.ts";
 
 const top: number = screen.availHeight / 2;
-const bottom: number = top * 2;
 
 const bird: Bird = new Bird( top, 'bird' );
 const birdDiv = document.getElementById( 'bird' ) as HTMLDivElement;
