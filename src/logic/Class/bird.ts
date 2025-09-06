@@ -8,6 +8,8 @@ export default class Bird {
     public topMargin: number;
 
     public readonly right: number;
+    public readonly top: number;
+    public readonly bottom: number;
 
     public control: Jump;
     private pillar: Pillar;
@@ -19,9 +21,13 @@ export default class Bird {
 
     constructor( top: number, id: string ) {
         this.topMargin = top;
+
         this.birb = document.getElementById( id ) as HTMLDivElement;
         this.height = this.birb.offsetHeight;
         this.half = this.height / 2;
+
+        this.top = this.birb.getBoundingClientRect().top;
+        this.bottom = this.birb.getBoundingClientRect().bottom;
 
         this.right = this.birb.getBoundingClientRect().right;
 
@@ -40,13 +46,15 @@ export default class Bird {
             this.gameOver();
             return true;
         } else {
-            return false
+            return false;
         }
     }
 
     protected pillarCollision(): void {
         if ( this.pillar.right <=  350 ) {
-            console.log('HEY');
+            if ( this.pillar.top > this.topMargin ) {
+                console.log('COLLISION TO PILLAR');
+            }
         }
     }
 
