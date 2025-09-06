@@ -1,9 +1,30 @@
 @import "tailwindcss";
 
 @layer base {
+    #bird {
+        @apply z-20
+    }
     #shadow,
     #game-over {
         display: none;
         visibility: hidden;
+    }
+
+    #pillar {
+        animation: forwards infinite linear 1.8s animatePillar;
+        left: 200px;
+        @apply bg-green-500 mx-10 h-full w-44 relative z-50
+    }
+    #hole {
+        @apply bg-white border-y-4 border-y-black border-x-0 w-full h-1/3
+    }
+}
+
+@keyframes animatePillar {
+    from {
+        left: 200px
+    }
+    to {
+        left: -1000px
     }
 }
