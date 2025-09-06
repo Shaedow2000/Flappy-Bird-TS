@@ -6,6 +6,7 @@ const gameOVer = document.getElementById( 'game-over' ) as HTMLHeadingElement;
 
 export default class Bird {
     public topMargin: number;
+    public bottomMargin: number;
 
     public readonly right: number;
     public readonly top: number;
@@ -21,6 +22,7 @@ export default class Bird {
 
     constructor( top: number, id: string ) {
         this.topMargin = top;
+        this.bottomMargin = 0;
 
         this.birb = document.getElementById( id ) as HTMLDivElement;
         this.height = this.birb.offsetHeight;
@@ -35,6 +37,13 @@ export default class Bird {
 
         this.control = new Jump();
         this.pillar = new Pillar( 350 );
+
+        this.setBottomMargin();
+    }
+
+    protected setBottomMargin: () => void = (): void => {
+        this.bottomMargin = screen.height - this.topMargin;
+        requestAnimationFrame( this.setBottomMargin );
     }
 
     protected topCollision(): boolean {
@@ -52,7 +61,8 @@ export default class Bird {
 
     protected pillarCollision(): void {
         if ( this.pillar.right <=  350 ) {
-            if ( this.pillar.top > this.topMargin ) {
+            console.log(this.pillar.top > this.topMargin || this.pillar.bottom > this.bottomMargin)
+            if ( this.pillar.top >= this.topMargin || this.pillar.bottom >= this.bottomMargin ) {
                 this.gameOver();
             }
         }
