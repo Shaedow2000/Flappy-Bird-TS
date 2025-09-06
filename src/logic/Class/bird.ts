@@ -53,7 +53,7 @@ export default class Bird {
     protected pillarCollision(): void {
         if ( this.pillar.right <=  350 ) {
             if ( this.pillar.top > this.topMargin ) {
-                console.log('COLLISION TO PILLAR');
+                this.gameOver();
             }
         }
     }
