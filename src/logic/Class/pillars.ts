@@ -1,15 +1,27 @@
 export default class Pillar {
     public gap: number;
-    public pillar: HTMLDivElement;
     public hole: HTMLDivElement;
+    public right: number;
 
     constructor( gap: number ) {
         this.gap = gap;
-        this.pillar = document.getElementById( 'pillar' ) as HTMLDivElement;
         this.hole = document.getElementById( 'hole' ) as HTMLDivElement;
+        this.right = 0;
+
+        this.getPillarLeftValue();
     }
 
-    public drawHole(): void {
+    public getPillarLeftValue: () => void = (): void => {
+        this.right = this.hole.getBoundingClientRect().right;
+        requestAnimationFrame( this.getPillarLeftValue );
+    }
 
+    private radomTop( min: number, max: number ): number {
+        return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+    }
+
+    public randomizeHole(): void {
+        this.hole.style.height = `${ this.gap }px`;
+        this.hole.style.top = `${ this.radomTop( 0, 700 ) }px`;
     }
 }

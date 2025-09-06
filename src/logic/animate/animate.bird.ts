@@ -7,7 +7,7 @@ const birdDiv = document.getElementById( 'bird' ) as HTMLDivElement;
 
 export default function animate(): void {
     bird.update();
-    birdDiv.style.top = `${ bird.top }px`;
+    birdDiv.style.top = `${ bird.topMargin }px`;
 
     requestAnimationFrame( animate );
 }

@@ -8,10 +8,14 @@ export default class Jump {
 
     private jumpListener(): void {
         document.addEventListener( 'keydown', ( ev: KeyboardEvent ): void => {
-            this.isJumping = ev.key === ' ' || ev.key === 'Spacebar';
+            if ( ev.key === ' ' || ev.key === 'Spacebar' ) {
+                this.isJumping = ev.key === ' ' || ev.key === 'Spacebar';
+            }
         } );
         document.addEventListener( 'keyup', ( ev: KeyboardEvent ): void => {
-            this.isJumping = !( ev.key === ' ' || ev.key === 'Spacebar' );
+            if ( ev.key === ' ' || ev.key === 'Spacebar' ) {
+                this.isJumping = !( ev.key === ' ' || ev.key === 'Spacebar' );
+            }
         } );
     }
 }
