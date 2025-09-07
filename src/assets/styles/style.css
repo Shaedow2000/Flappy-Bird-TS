@@ -2,7 +2,7 @@
 
 @layer base {
     #bird {
-        @apply z-20
+        @apply z-20 bg-[url(../images/flappy-bird.png)] bg-cover bg-center bg-no-repeat
     }
     #shadow,
     #game-over,
