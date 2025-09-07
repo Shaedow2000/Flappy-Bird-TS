@@ -14,11 +14,14 @@ export default class Bird {
 
     public control: Jump;
     private pillar: Pillar;
+    private pillarDiv: HTMLDivElement;
     public over: boolean;
 
     private birb: HTMLDivElement;
     private readonly height: number;
     private readonly half: number;
+
+    public points: number
 
     constructor( top: number, id: string ) {
         this.topMargin = top;
@@ -38,7 +41,12 @@ export default class Bird {
         this.control = new Jump();
         this.pillar = new Pillar( 350 );
 
+        this.pillarDiv = this.pillar.pillar;
+
+        this.points = 0;
+
         this.setBottomMargin();
+        this.addPoint();
     }
 
     protected setBottomMargin: () => void = (): void => {
@@ -46,13 +54,20 @@ export default class Bird {
         requestAnimationFrame( this.setBottomMargin );
     }
 
-    private addPoint(): void {
+    public addPoint: () => void = (): void => {
+        this.pillarDiv.addEventListener( 'animationiteration', (): void => {
+            this.points++;
+        } );
+    }
+
+    private storePoints: () => void = (): void => {
         if ( localStorage.getItem( 'highScore' ) === null ) {
-            localStorage.setItem( 'highScore', '0' );
+            localStorage.setItem( 'highScore', String( this.points ) );
         } else {
             let point: number = Number( localStorage.getItem( 'highScore' ) );
-            point++;
-            localStorage.setItem( 'highScore', String( point ) );
+            if ( point < this.points ) {
+                localStorage.setItem( 'highScore', String( this.points ) );
+            }
         }
     }
 
@@ -72,8 +87,8 @@ export default class Bird {
     protected pillarCollision(): void {
         if ( !this.over ) {
             if ( this.pillar.right <=  350 ) {
-                this.addPoint();
                 if ( this.pillar.top >= this.topMargin || this.pillar.bottom >= this.bottomMargin ) {
+                    this.storePoints();
                     this.gameOver();
                 }
             }
