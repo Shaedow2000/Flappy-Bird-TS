@@ -74,7 +74,6 @@ export default class Bird {
             if ( this.pillar.right <=  350 ) {
                 this.addPoint();
                 if ( this.pillar.top >= this.topMargin || this.pillar.bottom >= this.bottomMargin ) {
-                    this.pillar.stopPillars();
                     this.gameOver();
                 }
             }
@@ -87,6 +86,8 @@ export default class Bird {
 
         gameOVer.style.display = 'block';
         gameOVer.style.visibility = 'visible';
+
+        this.pillar.stopPillars();
 
         this.over = true;
     }
