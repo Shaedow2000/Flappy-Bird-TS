@@ -46,6 +46,16 @@ export default class Bird {
         requestAnimationFrame( this.setBottomMargin );
     }
 
+    private addPoint(): void {
+        if ( localStorage.getItem( 'highScore' ) === null ) {
+            localStorage.setItem( 'highScore', '0' );
+        } else {
+            let point: number = Number( localStorage.getItem( 'highScore' ) );
+            point++;
+            localStorage.setItem( 'highScore', String( point ) );
+        }
+    }
+
     protected topCollision(): boolean {
         return this.topMargin <= this.half;
     }
@@ -60,10 +70,13 @@ export default class Bird {
     }
 
     protected pillarCollision(): void {
-        if ( this.pillar.right <=  350 ) {
-            console.log(this.pillar.top > this.topMargin || this.pillar.bottom > this.bottomMargin)
-            if ( this.pillar.top >= this.topMargin || this.pillar.bottom >= this.bottomMargin ) {
-                this.gameOver();
+        if ( !this.over ) {
+            if ( this.pillar.right <=  350 ) {
+                this.addPoint();
+                if ( this.pillar.top >= this.topMargin || this.pillar.bottom >= this.bottomMargin ) {
+                    this.pillar.stopPillars();
+                    this.gameOver();
+                }
             }
         }
     }

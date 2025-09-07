@@ -7,5 +7,7 @@ const pillar: Pillar = new Pillar( 350 );
 const pillarDiv = document.getElementById( 'pillar' ) as HTMLDivElement;
 
 pillarDiv.addEventListener( 'animationiteration', (): void => {
-    pillar.randomizeHole();
+    if ( !pillar.over ) {
+        pillar.randomizeHole();
+    }
 } );

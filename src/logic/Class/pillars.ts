@@ -1,16 +1,23 @@
 export default class Pillar {
     public gap: number;
+    public pillar: HTMLDivElement;
     public hole: HTMLDivElement;
     public right: number;
     public top: number;
     public bottom: number;
 
+    public over: boolean;
+
     constructor( gap: number ) {
         this.gap = gap;
+        this.pillar = document.getElementById( 'pillar' ) as HTMLDivElement
         this.hole = document.getElementById( 'hole' ) as HTMLDivElement;
         this.right = 0;
         this.top = 0;
         this.bottom = 0;
+
+
+        this.over = false;
 
         this.getPillarRightValue();
         this.getPillarTopValue();
@@ -39,5 +46,11 @@ export default class Pillar {
     public randomizeHole(): void {
         this.hole.style.height = `${ this.gap }px`;
         this.hole.style.top = `${ this.radomTop( 0, 700 ) }px`;
+    }
+
+    public stopPillars(): void {
+        // this.pillar.style.animationPlayState = 'paused';
+        this.pillar.classList.remove( 'animate-pillar' );
+        this.over = true;
     }
 }

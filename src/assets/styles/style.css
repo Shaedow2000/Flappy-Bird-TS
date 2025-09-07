@@ -10,8 +10,11 @@
         visibility: hidden;
     }
 
-    #pillar {
+    .animate-pillar {
         animation: forwards infinite linear 1.8s animatePillar;
+    }
+
+    #pillar {
         @apply bg-green-500 mx-10 h-full w-44 relative z-50
     }
     #hole {
