@@ -3,6 +3,7 @@ import Pillar from "./pillars.ts";
 
 const shadow = document.getElementById( 'shadow' ) as HTMLDivElement;
 const gameOVer = document.getElementById( 'game-over' ) as HTMLHeadingElement;
+const highScore = document.getElementById( 'high-score' ) as HTMLHeadingElement;
 
 export default class Bird {
     public topMargin: number;
@@ -23,7 +24,7 @@ export default class Bird {
 
     public points: number;
 
-    protected pointsCouter: HTMLHeadingElement;
+    protected pointsCounter: HTMLHeadingElement;
 
     constructor( top: number, id: string ) {
         this.topMargin = top;
@@ -47,7 +48,7 @@ export default class Bird {
 
         this.points = 0;
 
-        this.pointsCouter = document.getElementById( 'points' ) as HTMLHeadingElement;
+        this.pointsCounter = document.getElementById( 'points' ) as HTMLHeadingElement;
 
         this.setBottomMargin();
         this.addPoint();
@@ -61,7 +62,7 @@ export default class Bird {
     public addPoint: () => void = (): void => {
         this.pillarDiv.addEventListener( 'animationiteration', (): void => {
             this.points++;
-            this.pointsCouter.innerHTML = `${ this.points }`;
+            this.pointsCounter.innerHTML = `${ this.points }`;
         } );
     }
 
@@ -106,6 +107,12 @@ export default class Bird {
 
         gameOVer.style.display = 'block';
         gameOVer.style.visibility = 'visible';
+
+        this.pointsCounter.innerHTML = `Score: ${ this.points }`;
+
+        highScore.style.display = 'block';
+        highScore.style.visibility = 'visible';
+        highScore.innerHTML = `High Score: ${ localStorage.getItem( 'highScore' ) }`;
 
         this.pillar.stopPillars();
 
