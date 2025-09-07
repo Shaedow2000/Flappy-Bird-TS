@@ -21,7 +21,9 @@ export default class Bird {
     private readonly height: number;
     private readonly half: number;
 
-    public points: number
+    public points: number;
+
+    protected pointsCouter: HTMLHeadingElement;
 
     constructor( top: number, id: string ) {
         this.topMargin = top;
@@ -45,6 +47,8 @@ export default class Bird {
 
         this.points = 0;
 
+        this.pointsCouter = document.getElementById( 'points' ) as HTMLHeadingElement;
+
         this.setBottomMargin();
         this.addPoint();
     }
@@ -57,6 +61,7 @@ export default class Bird {
     public addPoint: () => void = (): void => {
         this.pillarDiv.addEventListener( 'animationiteration', (): void => {
             this.points++;
+            this.pointsCouter.innerHTML = `${ this.points }`;
         } );
     }
 
