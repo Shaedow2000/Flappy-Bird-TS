@@ -51,7 +51,6 @@ export default class Pillar {
     public stopPillars(): void {
         this.pillar.classList.remove( 'animate-pillar' );
         this.pillar.style.left = `-${ this.right }px`;
-        console.log('LEFt', this.right);
-        this.over = true
+        this.over = true;
     }
 }
