@@ -92,7 +92,8 @@ export default class Bird {
 
     protected pillarCollision(): void {
         if ( !this.over ) {
-            if ( this.pillar.right <=  350 ) {
+            if ( this.pillar.right <=  350 && this.pillar.right > 150 ) {
+                console.log(this.pillar.right);
                 if ( this.pillar.top >= this.topMargin || this.pillar.bottom >= this.bottomMargin ) {
                     this.storePoints();
                     this.gameOver();

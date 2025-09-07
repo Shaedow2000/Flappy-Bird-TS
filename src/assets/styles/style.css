@@ -21,7 +21,7 @@
     #hole {
         top: 20px;
         height: 1000px;
-        @apply bg-white border-y-4 border-y-black border-x-0 w-full relative
+        @apply bg-white border-x-0 w-full relative
     }
 }
 
