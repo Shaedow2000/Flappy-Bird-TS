@@ -1,4 +1,3 @@
-#Flappy-Bird Game !
 # Flappy Bird Game Colne In TypeScript.
 
 - It is a simple colne of the old famous game know as "flappy bird", made to be played in the web browser.
