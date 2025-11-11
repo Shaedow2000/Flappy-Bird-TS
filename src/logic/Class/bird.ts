@@ -82,7 +82,7 @@ export default class Bird {
     }
 
     protected bottomCollision(): boolean {
-        if ( this.topMargin >= ( screen.availHeight - this.height ) ) {
+        if ( this.topMargin >= screen.availHeight ) {
             this.gameOver();
             return true;
         } else {

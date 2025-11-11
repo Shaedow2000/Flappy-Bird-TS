@@ -16,12 +16,12 @@
     }
 
     #pillar {
-        @apply bg-green-500 mx-10 h-full w-44 relative z-50
+        @apply bg-green-700 mx-10 h-full w-44 relative z-50
     }
     #hole {
         top: 20px;
         height: 1000px;
-        @apply bg-white border-x-0 w-full relative
+        @apply bg-blue-300 border-x-0 w-full relative
     }
 }
 
